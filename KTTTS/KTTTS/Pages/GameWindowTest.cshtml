@@ -1,0 +1,74 @@
+﻿@page
+@model KTTTS.Pages.GameWindowTest
+
+@{
+    ViewData["Title"] = "Game";
+}
+<style>
+      td {
+        text-align: center;
+        vertical-align: middle;
+        width: 60px; 
+        cursor: pointer;
+        font-size: x-large;
+      }
+      </style>
+<meta http-equiv="refresh" content="60">
+<table class="" border="1" style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;">
+    <caption style="text-align:center">@Model.Winner</caption>
+    @for (var y = 0; y < 3; y++)
+    {
+        <tr style="height: 60px;">
+            @for (var x = 0; x < 3; x++)
+            {
+                @if (Model.MoveAllow)
+                {
+                    <td onclick="window.location.href = '/GameWindowTest?id=@Model.Id&player=@Model.Email&x=@x&y=@y&move=1'">
+                        @switch (Model.Board![x, y].IsX, Model.Board![x, y].IsO)
+                        {
+                            case (false,false):
+                                <text> </text>
+                                break;
+                            case (true,false):
+                                <text>X</text>
+                                break;
+                            case (false,true):
+                                <text>O</text>
+                                break;
+                        }
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @switch (Model.Board![x, y].IsX, Model.Board![x, y].IsO)
+                        {
+                            case (false,false):
+                                <text> </text>
+                                break;
+                            case (true,false):
+                                <text>X</text>
+                                break;
+                            case (false,true):
+                                <text>O</text>
+                                break;
+                        }
+                    </td>
+                }
+            }
+        </tr>
+    }
+</table>
+@if (Model.MoveAllow)
+{
+    <div class="col-md-2" style="float:none;margin:auto;">
+    <form method="post" style="text-align: center;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control"/>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary" style="text-align: center;"/>
+    </form>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTTTS", "KTTTS\KTTTS.csproj", "{7FF98A81-DFA7-4447-A230-0C4039DF0D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeBrain", "TicTacToeBrain\TicTacToeBrain.csproj", "{7881E7D6-ECD9-4A18-A9C8-FDEEA7C49681}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E270073-F27C-4C1D-963C-6AE7432C4A60}"
+ProjectSection(SolutionItems) = preProject
+	..\Directory.Build.props = ..\Directory.Build.props
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FF98A81-DFA7-4447-A230-0C4039DF0D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF98A81-DFA7-4447-A230-0C4039DF0D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FF98A81-DFA7-4447-A230-0C4039DF0D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FF98A81-DFA7-4447-A230-0C4039DF0D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7881E7D6-ECD9-4A18-A9C8-FDEEA7C49681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7881E7D6-ECD9-4A18-A9C8-FDEEA7C49681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7881E7D6-ECD9-4A18-A9C8-FDEEA7C49681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7881E7D6-ECD9-4A18-A9C8-FDEEA7C49681}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
