@@ -18,30 +18,51 @@ namespace KTTTS.Pages
         {
             _ctx = context;
         }
+        //board to display on screen
         public BoardSquareState[,]? Board { get; private set; }
+        
+        //True if it's the player's turn
         public bool MoveAllow;
+        
+        //Id of the game
         public int Id;
+        
+        //email of the player
         public string Email = default!;
+        
+        //Game status text
         public string Winner = "In progress";
+        
+        //Propety to bind from the POST request
         [BindProperty] public string Password { get; set; } = default!;
+        
+        
         public async Task<IActionResult> OnGetAsync(int id, string player, int x, int y, int move)
         {
+            //find the game with the matching id
             Game currentGame = await _ctx.Games.FindAsync(id);
             Id = id;
             player = HttpUtility.HtmlDecode(player);
             Email = HttpUtility.UrlEncode(player);
+            
+            //restore the game from the database
             TicTacToeBrain.TicTacToeBrain brain = new();
             brain.RestoreBrainFromJson(currentGame.GameState);
             var turn = brain.GetCurrentPlayer();
             Board = brain.Board;
+            
+            //Check if the game is finished, if returns "No" continue
             if (brain.GameFinish() != "No")
             {
                 Winner = brain.GameFinish();
                 MoveAllow = false;
                 return Page();
             }
+            
+            //turn 1 = player 1 turn, turn 2 = player 2 turn
             switch (turn)
             {
+                //if it's player 1 turn and the email corresponds to player 1 email in database, allow moving
                 case 1 when player == currentGame.P1Email:
                 {
                     MoveAllow = true;
@@ -58,6 +79,7 @@ namespace KTTTS.Pages
                 case 1:
                     MoveAllow = false;
                     break;
+                //if it's player 2 turn and the email corresponds to player 2 email in database, allow moving
                 case 2 when player == currentGame.P2Email:
                 {
                     MoveAllow = true;
@@ -85,6 +107,8 @@ namespace KTTTS.Pages
                 return Page();
             }
             player = HttpUtility.HtmlDecode(player);
+            
+            //find the game that matches the id
             Game currentGame = await _ctx.Games.FindAsync(id);
             TicTacToeBrain.TicTacToeBrain brain = new();
             brain.RestoreBrainFromJson(currentGame.GameState);
@@ -95,6 +119,8 @@ namespace KTTTS.Pages
                 Board = brain.Board;
                 return RedirectToPage("/GameWindowTest", new {id = id, player = player});
             }
+            //check the one-time-password submitted by the user, if password correct save the move to database and
+            //send him/her an email with new password
             switch (turn)
             {
                 case 1:

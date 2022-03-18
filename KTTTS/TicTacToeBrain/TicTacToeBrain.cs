@@ -11,6 +11,7 @@ namespace TicTacToeBrain
 
         public TicTacToeBrain()
         {
+            //generate the player's turn by random and create an empty board
             Random random = new();
             _currentPlayerNo = random.Next(1, 3);
             Board = new BoardSquareState[3, 3];
@@ -38,6 +39,8 @@ namespace TicTacToeBrain
                 CurrentPlayerNo = _currentPlayerNo,
                 Board = new List<List<BoardSquareState>>()
             };
+            
+            //save the board into a jagged array
             for (var x = 0; x < 3; x++)
             {
                 var xValues = new List<BoardSquareState>();
@@ -145,7 +148,8 @@ namespace TicTacToeBrain
             {
                 return "Player 2 wins!";
             }
-
+            
+            //if the number of filled tiles is 9 (on a 3x3 board), then declare a draw
             var counter = 0;
             for (var i = 0; i < 3; i++)
             {
