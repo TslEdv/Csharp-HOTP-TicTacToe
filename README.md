@@ -21,6 +21,8 @@ To initialize the needed tables:
 
 - dotnet ef database update --project KTTTS --startup-project KTTTS
 
+The Admin Page needs to be open in a separate tab for the application to refresh it's email every 15 seconds.
+
 Game Process
 
 - Send and email to the managing server with title "Match" and body text of only the other player's email
